@@ -47,4 +47,10 @@ services:
       context: skills/program-y
     ports:
       - 3005:3005
+  intent_catcher:
+    build:
+      context: ./annotators/intent_catcher/
+    ports:
+      - 3007:3007
+    command: gunicorn --workers=1 --name=catcher --bind 0.0.0.0:3007 --timeout=100 server:app
 version: "3.7"
